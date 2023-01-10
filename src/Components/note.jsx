@@ -1,14 +1,24 @@
-import React from 'react'
-
+import React from "react";
+import myNotes from "./createArea";
+import { notes } from "../Data/notes";
 const Notes = () => {
+  const data = JSON.parse(localStorage.getItem("localNotes"));
+
+  console.log("localS", data);
   return (
     <div>
-        <h1>Title</h1>
-        <p>Content</p>
-        <button>Delete</button>
-        
-    </div>
-  )
-}
+      {data.map((item, i) => (
+        <ul key={item[i]}>
+          <li>Title:{item.title}</li>
+          <li>Body:{item.content}</li>
+        </ul>
+      ))}
 
-export default Notes
+      <h1>Title</h1>
+      <p>Content</p>
+      <button>Delete</button>
+    </div>
+  );
+};
+
+export default Notes;
