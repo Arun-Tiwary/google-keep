@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import keeepImg from "../Images/keep_2020q4_48dp.png";
 import {
   Flex,
@@ -11,6 +11,7 @@ import {
   Link,
   Divider,
   Tooltip,
+  InputLeftAddon,
 } from "@chakra-ui/react";
 import { GrRefresh } from "react-icons/gr";
 import { TfiViewList } from "react-icons/tfi";
@@ -18,8 +19,9 @@ import { AiOutlineSetting } from "react-icons/ai";
 import { TbGridDots } from "react-icons/tb";
 import { VscAccount } from "react-icons/vsc";
 import { AiOutlineBars } from "react-icons/ai";
+import { PhoneIcon, AddIcon, WarningIcon, Search2Icon } from "@chakra-ui/icons";
 
-const Header = () => {
+const Header = ({ search, setSearch }) => {
   return (
     <>
       <Flex direction={"row"} align={"center"} pt="10px">
@@ -34,15 +36,26 @@ const Header = () => {
           <Image src={keeepImg} boxSize={"30px"}></Image>
           <Heading size={"md"}>Keep</Heading>
         </HStack>
-        <InputGroup p={"0 50px 0 50px"}>
-          <InputLeftElement></InputLeftElement>
-          <Input
-            variant={"filled"}
-            p={"11px 0"}
-            type="text"
-            placeholder="Search"
-          />
-        </InputGroup>
+
+        <HStack spacing="40px" h={"20px"} w={"100%"} marginLeft={"32px"}>
+          <InputGroup width={"60%"}>
+            <InputLeftElement
+              pointerEvents="none"
+              color="gray.300"
+              fontSize="1.2em"
+              children="$"
+            />
+
+            <Input
+              variant={"filled"}
+              // p={"11px 0"}
+              type="text"
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </InputGroup>
+        </HStack>
         <HStack spacing="18px" h={"20px"}>
           <Link>
             <GrRefresh />

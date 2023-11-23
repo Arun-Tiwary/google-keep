@@ -1,18 +1,15 @@
 import "./App.css";
-import CreateArea from "./Components/createArea";
-import Footer from "./Components/footer";
-import Header from "./Components/header";
-import Notes from "./Components/note";
+import CreateArea from "./components/KeepNotes";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Notes from "./components/Note";
+import { toast, Toaster, ToastBar } from "react-hot-toast";
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <CreateArea />
-
-      <Notes />
-
-      {/* <Footer />   */}
+      <Footer />
     </div>
   );
 }
