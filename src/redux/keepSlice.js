@@ -30,7 +30,11 @@ export const keepSlice = createSlice({
     updateNotes: (state, action) => {
       state.notes = state?.notes?.map((note) =>
         note.id === action.payload.id
-          ? { title: action.payload.title, content: action.payload.content }
+          ? {
+              ...note,
+              title: action.payload.title,
+              content: action.payload.content,
+            }
           : note
       );
     },
