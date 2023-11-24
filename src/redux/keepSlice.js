@@ -6,7 +6,7 @@ const initialState = {
     { id: 0, title: "Hulk", content: "I am Hulk", pinned: false },
     { id: 1, title: "Iron Man", content: "I am Iron Man", pinned: false },
   ],
-  pinnedNotes: [],
+  archivedNotes: [],
   idKeeper: "132441342",
   test: "",
 };
@@ -43,8 +43,18 @@ export const keepSlice = createSlice({
         item.id === action.payload.id ? { ...item, pinned: !item.pinned } : item
       );
     },
-    addPinnedNotes: (state, action) => {
-      state.pinnedNotes = state?.pinnedNotes.push(action);
+    archiveNote: (state, action) => {
+      console.log(action.payload);
+      const archiveNote = {
+        id: action.payload.id,
+        title: action.payload.title,
+        content: action.payload.content,
+        pinned: false,
+      };
+      state?.archivedNotes?.push(archiveNote);
+      state.notes = state?.notes.filter(
+        (note) => note.id !== action.payload.id
+      );
     },
     changeIdKeeper: (state, action) => {
       state.idKeeper = action.payload;
@@ -59,6 +69,7 @@ export const {
   changeIdKeeper,
   updateNotes,
   changePinnedStatus,
+  archiveNote,
 } = keepSlice.actions;
 
 export default keepSlice.reducer;
