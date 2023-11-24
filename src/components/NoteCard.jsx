@@ -14,6 +14,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BsPinFill } from "react-icons/bs";
 import { BsPin } from "react-icons/bs";
+import { IoArchiveOutline } from "react-icons/io5";
 
 const NoteCard = ({
   item,
@@ -21,9 +22,8 @@ const NoteCard = ({
   handleUpdateId,
   handleDelete,
   handlePinned,
+  handleArchive,
 }) => {
-  const dispatch = useDispatch();
-
   return (
     <>
       <Card className="h-max max-h-500">
@@ -70,6 +70,12 @@ const NoteCard = ({
               onOpen();
             }}
           ></Button>
+          <IconButton
+            variant="ghost"
+            aria-label="See menu"
+            icon={<IoArchiveOutline />}
+            onClick={() => handleArchive(item)}
+          />
         </CardFooter>
       </Card>
     </>

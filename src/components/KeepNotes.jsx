@@ -19,6 +19,7 @@ import {
   removeNotes,
   updateNotes,
   changePinnedStatus,
+  archiveNote,
 } from "../redux/keepSlice";
 import Notes from "./Note";
 import NoteCard from "./NoteCard";
@@ -34,11 +35,12 @@ const KeepNotes = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const myNotes = useSelector((state) => state.keep.notes);
-  const pinnedNotes = useSelector((state) => state.keep.pinnedNotes);
+  const archivedNotes = useSelector((state) => state.keep.archivedNotes);
   const notesId = useSelector((state) => state.keep.idKeeper);
   const [search, setSearch] = useState("");
   const [noteList, setNoteList] = useState([]);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  console.log(archivedNotes);
 
   // console.log(reversedOrder);
   function searchObjects(array, searchTerm) {
@@ -121,6 +123,11 @@ const KeepNotes = () => {
   function handlePinnedNotes(item) {
     dispatch(changePinnedStatus(item));
   }
+
+  //function to handle archive notes
+  const handleArchive = (item) => {
+    dispatch(archiveNote(item));
+  };
 
   return (
     <>
@@ -225,6 +232,7 @@ const KeepNotes = () => {
                           onOpen={onOpen}
                           handleDelete={handleDelete}
                           handlePinned={handlePinnedNotes}
+                          handleArchive={handleArchive}
                         />
                       )}
                     </>
@@ -249,6 +257,7 @@ const KeepNotes = () => {
                           onOpen={onOpen}
                           handleDelete={handleDelete}
                           handlePinned={handlePinnedNotes}
+                          handleArchive={handleArchive}
                         />
                       )}
                     </>
@@ -275,6 +284,7 @@ const KeepNotes = () => {
                         onOpen={onOpen}
                         handleDelete={handleDelete}
                         handlePinned={handlePinnedNotes}
+                        handleArchive={handleArchive}
                       />
                     </>
                   ))}
