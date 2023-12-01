@@ -29,7 +29,10 @@ const NoteCard = ({
       <Card className="h-max max-h-500">
         <CardHeader>
           <Flex justifyContent={"space-between"}>
-            <Heading size="md"> {item.title}</Heading>
+            <Heading size="md" overflow={"auto"}>
+              {" "}
+              {item.title}
+            </Heading>
             <IconButton
               variant="ghost"
               colorScheme="gray"
@@ -41,7 +44,7 @@ const NoteCard = ({
         </CardHeader>
 
         <CardBody className="overflow-hidden">
-          <Text>{item?.content}</Text>
+          <Text>{item?.content || (item?.title ? "" : "Empty note")}</Text>
         </CardBody>
         <CardFooter
           justify="space-between"

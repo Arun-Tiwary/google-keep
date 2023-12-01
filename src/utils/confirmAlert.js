@@ -3,7 +3,9 @@ import { confirmAlert } from "react-confirm-alert";
 export const alertConfitm = (
   title = "Confirm to submit",
   message = "Are you sure to do this.",
+  yesLabel = "yes",
   yesFunc = () => {},
+  noLabel = "no",
   noFunc = () => {}
 ) => {
   confirmAlert({
@@ -11,11 +13,11 @@ export const alertConfitm = (
     message: message,
     buttons: [
       {
-        label: "Yes",
+        label: yesLabel,
         onClick: yesFunc,
       },
       {
-        label: "No",
+        label: noLabel,
         onClick: noFunc,
       },
     ],

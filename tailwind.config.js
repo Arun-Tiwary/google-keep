@@ -6,6 +6,10 @@ module.exports = {
       maxHeight: {
         500: "500px",
       },
+      colors: {
+        "custom-yellow": "#feefc3",
+        "custom-gray": "#f1f3f4",
+      },
     },
   },
   darkMode: "class",

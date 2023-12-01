@@ -1,15 +1,15 @@
 import "./App.css";
-import CreateArea from "./components/KeepNotes";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Notes from "./components/Note";
+import "./styles/index.scss";
 import { toast, Toaster, ToastBar } from "react-hot-toast";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { Router } from "react-router-dom";
+import AppRouter from "./router";
 function App() {
   return (
     <div className="App">
-      <CreateArea />
-      <Footer />
+      <AppRouter />
+      {/* <CreateArea /> */}
+      {/* <Footer /> */}
     </div>
   );
 }
