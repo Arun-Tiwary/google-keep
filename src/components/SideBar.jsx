@@ -17,7 +17,9 @@ const SideBar = () => {
     >
       <div
         className={`sidebar-menu menu-item ${
-          selectedMenu === "/notes" || selectedMenu === "/home"
+          selectedMenu === "/notes" ||
+          selectedMenu === "/home" ||
+          selectedMenu === "/"
             ? "bg-custom-yellow"
             : "hover:bg-custom-gray"
         } `}
