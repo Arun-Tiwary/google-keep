@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .menu-item {
+    @apply pl-3 flex flex-row cursor-pointer;
+  }
+}

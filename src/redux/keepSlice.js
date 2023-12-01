@@ -7,7 +7,9 @@ const initialState = {
     { id: 1, title: "Iron Man", content: "I am Iron Man", pinned: false },
   ],
   archivedNotes: [],
+  trash: [],
   idKeeper: "132441342",
+  searchValue: "",
   test: "",
 };
 
@@ -23,9 +25,6 @@ export const keepSlice = createSlice({
         pinned: false,
       };
       state.notes.push(newNote);
-    },
-    removeNotes: (state, action) => {
-      state.notes = state.notes.filter((item) => item.id !== action.payload);
     },
     updateNotes: (state, action) => {
       state.notes = state?.notes?.map((note) =>
@@ -56,8 +55,29 @@ export const keepSlice = createSlice({
         (note) => note.id !== action.payload.id
       );
     },
+    unarchiveNote: (state, action) => {
+      state.notes.push(action.payload);
+      state.archivedNotes = state.archivedNotes.filter(
+        (note) => note.id !== action.payload.id
+      );
+    },
+    moveToTrash: (state, action) => {
+      state.trash.push(action.payload);
+      state.notes = state.notes.filter((item) => item.id !== action.payload.id);
+    },
+    removeFromTrash: (state, action) => {
+      state.notes.push(action.payload);
+      state.trash = state.trash.filter((item) => item.id !== action.payload.id);
+    },
+    deleteFromTrash: (state, action) => {
+      state.trash = state.trash.filter((item) => item.id !== action.payload.id);
+    },
+
     changeIdKeeper: (state, action) => {
       state.idKeeper = action.payload;
+    },
+    search: (state, action) => {
+      state.searchValue = action.payload;
     },
     reset: () => initialState,
   },
@@ -65,11 +85,15 @@ export const keepSlice = createSlice({
 
 export const {
   addNotes,
-  removeNotes,
   changeIdKeeper,
   updateNotes,
   changePinnedStatus,
   archiveNote,
+  unarchiveNote,
+  moveToTrash,
+  removeFromTrash,
+  deleteFromTrash,
+  search,
 } = keepSlice.actions;
 
 export default keepSlice.reducer;
