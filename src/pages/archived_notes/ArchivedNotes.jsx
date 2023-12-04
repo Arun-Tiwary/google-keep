@@ -4,7 +4,8 @@ import { SimpleGrid, useDisclosure } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header";
 import ArchiveNoteCard from "../../components/ArchiveNoteCard";
-import { unarchiveNote } from "../../redux/keepSlice";
+import { unarchiveAndPinNote, unarchiveNote } from "../../redux/keepSlice";
+import { successToast } from "../../utils/toast";
 
 const ArchivedNotes = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -13,6 +14,11 @@ const ArchivedNotes = () => {
 
   const handleArchive = (item) => {
     dispatch(unarchiveNote(item));
+    successToast("Note unarchived");
+  };
+  const handlePinAndUnarchive = (item) => {
+    dispatch(unarchiveAndPinNote(item));
+    successToast("Note unarchived and pinned");
   };
   return (
     <>
@@ -34,6 +40,7 @@ const ArchivedNotes = () => {
                     // handleDelete={handleDelete}
                     // handlePinned={handlePinnedNotes}
                     handleArchive={handleArchive}
+                    handlePinAndUnarchive={handlePinAndUnarchive}
                   />
                 </>
               ))}

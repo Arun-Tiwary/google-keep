@@ -61,6 +61,18 @@ export const keepSlice = createSlice({
         (note) => note.id !== action.payload.id
       );
     },
+    unarchiveAndPinNote: (state, action) => {
+      const archiveNote = {
+        id: action.payload.id,
+        title: action.payload.title,
+        content: action.payload.content,
+        pinned: true,
+      };
+      state.notes.push(archiveNote);
+      state.archivedNotes = state.archivedNotes.filter(
+        (note) => note.id !== action.payload.id
+      );
+    },
     moveToTrash: (state, action) => {
       state.trash.push(action.payload);
       state.notes = state.notes.filter((item) => item.id !== action.payload.id);
@@ -90,6 +102,7 @@ export const {
   changePinnedStatus,
   archiveNote,
   unarchiveNote,
+  unarchiveAndPinNote,
   moveToTrash,
   removeFromTrash,
   deleteFromTrash,

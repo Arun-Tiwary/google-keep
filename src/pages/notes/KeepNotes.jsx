@@ -127,6 +127,8 @@ const KeepNotes = () => {
   //function to handle archive notes
   const handleArchive = (item) => {
     dispatch(archiveNote(item));
+    if (item.pinned) successToast("Note unpinned and archived");
+    else successToast("Note archived");
   };
 
   return (

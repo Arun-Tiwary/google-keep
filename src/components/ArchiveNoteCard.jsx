@@ -13,7 +13,7 @@ import React from "react";
 import { BsPin, BsPinFill } from "react-icons/bs";
 import { MdOutlineUnarchive } from "react-icons/md";
 
-const ArchiveNoteCard = ({ item, handleArchive }) => {
+const ArchiveNoteCard = ({ item, handleArchive, handlePinAndUnarchive }) => {
   return (
     <>
       <>
@@ -24,13 +24,15 @@ const ArchiveNoteCard = ({ item, handleArchive }) => {
                 {" "}
                 {item.title}
               </Heading>
-              <IconButton
-                variant="ghost"
-                colorScheme="gray"
-                aria-label="See menu"
-                icon={item?.pinned ? <BsPinFill /> : <BsPin />}
-                //   onClick={() => handlePinned(item)}
-              />
+              <Tooltip label="Pin archived note" aria-label="A tooltip">
+                <IconButton
+                  variant="ghost"
+                  colorScheme="gray"
+                  aria-label="See menu"
+                  icon={item?.pinned ? <BsPinFill /> : <BsPin />}
+                  onClick={() => handlePinAndUnarchive(item)}
+                />
+              </Tooltip>
             </Flex>
           </CardHeader>
 
