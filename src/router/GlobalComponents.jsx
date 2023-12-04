@@ -13,7 +13,7 @@ const GlobalComponents = () => {
       <div className="">{outlet}</div>
       <div className="flex flex-row"></div>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

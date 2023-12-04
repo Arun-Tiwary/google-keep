@@ -9,6 +9,7 @@ import {
   IconButton,
   SimpleGrid,
   Text,
+  Tooltip,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,13 +34,18 @@ const NoteCard = ({
               {" "}
               {item.title}
             </Heading>
-            <IconButton
-              variant="ghost"
-              colorScheme="gray"
-              aria-label="See menu"
-              icon={item?.pinned ? <BsPinFill /> : <BsPin />}
-              onClick={() => handlePinned(item)}
-            />
+            <Tooltip
+              label={item?.pinned ? "Unpin note" : "Pin note"}
+              aria-label="A tooltip"
+            >
+              <IconButton
+                variant="ghost"
+                colorScheme="gray"
+                aria-label="See menu"
+                icon={item?.pinned ? <BsPinFill /> : <BsPin />}
+                onClick={() => handlePinned(item)}
+              />
+            </Tooltip>
           </Flex>
         </CardHeader>
 
@@ -73,12 +79,14 @@ const NoteCard = ({
               onOpen();
             }}
           ></Button>
-          <IconButton
-            variant="ghost"
-            aria-label="See menu"
-            icon={<IoArchiveOutline />}
-            onClick={() => handleArchive(item)}
-          />
+          <Tooltip label={"Archive"} aria-label="A tooltip">
+            <IconButton
+              variant="ghost"
+              aria-label="See menu"
+              icon={<IoArchiveOutline />}
+              onClick={() => handleArchive(item)}
+            />
+          </Tooltip>
         </CardFooter>
       </Card>
     </>
